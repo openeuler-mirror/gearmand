@@ -1,5 +1,5 @@
 Name:                gearmand
-Version:             1.1.19.1
+Version:             1.1.20
 Release:             1
 Summary:             A distributed job system
 License:             BSD
@@ -9,7 +9,6 @@ Source1:             gearmand.init
 Source2:             gearmand.sysconfig
 Source3:             gearmand.service
 Patch0:              gearmand-1.1.12-ppc64le.patch
-Patch1:              https://github.com/gearman/gearmand/pull/273.patch
 ExcludeArch:         ppc
 BuildRequires:       gcc-c++ chrpath libuuid-devel boost-devel >= 1.37.0, boost-thread sqlite-devel
 BuildRequires:       tokyocabinet-devel libevent-devel libmemcached-devel, memcached hiredis-devel
@@ -45,9 +44,7 @@ Obsoletes:           libgearman-1.0-devel < %{version}-%{release}
 Development headers for %{name}.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
+%autosetup -p1
 
 %build
 %configure --disable-static --disable-silent-rules --enable-ssl
@@ -82,7 +79,7 @@ exit 0
 
 %files
 %license COPYING
-%doc AUTHORS ChangeLog HACKING THANKS
+%doc AUTHORS ChangeLog CONTRIBUTING.md README.md THANKS
 %config(noreplace) %{_sysconfdir}/sysconfig/gearmand
 %{_sbindir}/gearmand
 %{_bindir}/gearman
@@ -98,8 +95,7 @@ exit 0
 
 %files -n libgearman-devel
 %license COPYING
-%doc AUTHORS ChangeLog HACKING THANKS
-%dir %{_includedir}/libgearman
+%doc AUTHORS ChangeLog CONTRIBUTING.md README.md THANKS
 %{_includedir}/libgearman/
 %{_libdir}/pkgconfig/gearmand.pc
 %{_libdir}/libgearman.so
@@ -107,5 +103,8 @@ exit 0
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 14 2023 liyanan <thistleslyn@163.com> - 1.1.20-1
+- Update to 1.1.20
+
 * Tue Sep 7 2021 zhengyaohui <zhengyaohui1@huawei.com> - 1.1.19.1-1
 - package init
