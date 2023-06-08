@@ -1,6 +1,6 @@
 Name:                gearmand
 Version:             1.1.19.1
-Release:             1
+Release:             2
 Summary:             A distributed job system
 License:             BSD
 URL:                 http://www.gearman.org
@@ -10,6 +10,7 @@ Source2:             gearmand.sysconfig
 Source3:             gearmand.service
 Patch0:              gearmand-1.1.12-ppc64le.patch
 Patch1:              https://github.com/gearman/gearmand/pull/273.patch
+Patch2:	             0001-add-loongarch64-support-for-gearmand.patch
 ExcludeArch:         ppc
 BuildRequires:       gcc-c++ chrpath libuuid-devel boost-devel >= 1.37.0, boost-thread sqlite-devel
 BuildRequires:       tokyocabinet-devel libevent-devel libmemcached-devel, memcached hiredis-devel
@@ -48,6 +49,9 @@ Development headers for %{name}.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%ifarch loongarch64
+%patch2 -p1
+%endif
 
 %build
 %configure --disable-static --disable-silent-rules --enable-ssl
@@ -107,5 +111,8 @@ exit 0
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun  8 2023 Wenlong Zhang<zhangwenlong@loongson.cn> - 1.1.19.1-2
+- add loongarch64 support for gearmand
+
 * Tue Sep 7 2021 zhengyaohui <zhengyaohui1@huawei.com> - 1.1.19.1-1
 - package init
