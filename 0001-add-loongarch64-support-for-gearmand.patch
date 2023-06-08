@@ -1,0 +1,25 @@
+From 01ad1976408db45adb5e83f4962c70f4c735a594 Mon Sep 17 00:00:00 2001
+From: Wenlong Zhang <zhangwenlong@loongson.cn>
+Date: Thu, 8 Jun 2023 11:46:36 +0000
+Subject: [PATCH] add loongarch64 support for gearmand
+
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index 49ac057..4908098 100755
+--- a/configure
++++ b/configure
+@@ -17054,7 +17054,7 @@ $as_echo_n "checking for boostlib >= $boost_lib_version_req... " >&6; }
+                         libsubdirs="lib"
+     ax_arch=`uname -m`
+     case $ax_arch in
+-      x86_64|ppc64*|s390x|sparc64|aarch64)
++      x86_64|ppc64*|s390x|sparc64|aarch64|loongarch64)
+         libsubdirs="lib64 lib lib64"
+         ;;
+     esac
+-- 
+2.33.0
+
