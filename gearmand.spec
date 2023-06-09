@@ -9,6 +9,7 @@ Source1:             gearmand.init
 Source2:             gearmand.sysconfig
 Source3:             gearmand.service
 Patch0:              gearmand-1.1.12-ppc64le.patch
+Patch2:                     0001-add-loongarch64-support-for-gearmand.patch
 ExcludeArch:         ppc
 BuildRequires:       gcc-c++ chrpath libuuid-devel boost-devel >= 1.37.0, boost-thread sqlite-devel
 BuildRequires:       tokyocabinet-devel libevent-devel libmemcached-devel, memcached hiredis-devel
@@ -103,6 +104,9 @@ exit 0
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun  8 2023 Wenlong Zhang<zhangwenlong@loongson.cn> - 1.1.19.1-2
+- add loongarch64 support for gearmand
+
 * Fri Apr 14 2023 liyanan <thistleslyn@163.com> - 1.1.20-1
 - Update to 1.1.20
 
