@@ -1,0 +1,22 @@
+diff --git a/configure b/configure
+index 49ac057..9c0a693 100755
+--- a/configure
++++ b/configure
+@@ -17054,7 +17054,7 @@ $as_echo_n "checking for boostlib >= $boost_lib_version_req... " >&6; }
+                         libsubdirs="lib"
+     ax_arch=`uname -m`
+     case $ax_arch in
+-      x86_64|ppc64*|s390x|sparc64|aarch64)
++      x86_64|ppc64*|s390x|sparc64|aarch64|riscv64)
+         libsubdirs="lib64 lib lib64"
+         ;;
+     esac
+@@ -27319,7 +27319,7 @@ if ac_fn_c_try_compile "$LINENO"; then :
+ 	for ac_word in $CC $CFLAGS $CPPFLAGS $LDFLAGS; do
+ 	 if test -n "$ac_prev"; then
+ 	   case $ac_word in
+-	     i?86 | x86_64 | ppc | ppc64*)
++	     i?86 | x86_64 | ppc | ppc64* | riscv64)
+ 	       if test -z "$ac_arch" || test "$ac_arch" = "$ac_word"; then
+ 		 ac_arch=$ac_word
+ 	       else
