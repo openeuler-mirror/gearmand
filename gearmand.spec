@@ -1,6 +1,6 @@
 Name:                gearmand
 Version:             1.1.19.1
-Release:             1
+Release:             2
 Summary:             A distributed job system
 License:             BSD
 URL:                 http://www.gearman.org
@@ -10,11 +10,12 @@ Source2:             gearmand.sysconfig
 Source3:             gearmand.service
 Patch0:              gearmand-1.1.12-ppc64le.patch
 Patch1:              https://github.com/gearman/gearmand/pull/273.patch
+Patch2:              add-riscv-support.patch
 ExcludeArch:         ppc
 BuildRequires:       gcc-c++ chrpath libuuid-devel boost-devel >= 1.37.0, boost-thread sqlite-devel
 BuildRequires:       tokyocabinet-devel libevent-devel libmemcached-devel, memcached hiredis-devel
 BuildRequires:       gperf mariadb-connector-c-devel openssl-devel libpq-devel zlib-devel systemd
-%ifarch %{ix86} x86_64 ppc64 ppc64le aarch64 %{arm}
+%ifarch %{ix86} x86_64 ppc64 ppc64le aarch64 riscv64 %{arm}
 BuildRequires:       gperftools-devel
 %endif
 Requires(pre):  shadow-utils
@@ -48,7 +49,9 @@ Development headers for %{name}.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
+%ifarch riscv64
+%patch2 -p1
+%endif
 %build
 %configure --disable-static --disable-silent-rules --enable-ssl
 make %{_smp_mflags}
@@ -107,5 +110,8 @@ exit 0
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jul 14 2023 zhangxiang <zhangxiang@iscas.ac.cn> - 1.1.19.1-2
+- add riscv64 support
+
 * Tue Sep 7 2021 zhengyaohui <zhengyaohui1@huawei.com> - 1.1.19.1-1
 - package init
